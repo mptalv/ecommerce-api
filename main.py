@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from database import engine, Base
 
-from user import User 
+from models.user import User 
 
 app = FastAPI()
 
