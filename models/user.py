@@ -1,12 +1,25 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from database import Base
+from sqlalchemy import String, Boolean
+from sqlalchemy.orm import Mapped, mapped_column
 
-# Creates User table in Database
+from database import Base
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
-    email = Column(String(255), unique=True, nullable=False)
-    password_hash = Column(String(255), nullable=False)
-    is_admin = Column(Boolean, default=False)
+    id: Mapped[int] = mapped_column(primary_key=True)
+
+    email: Mapped[str] = mapped_column(
+        String(255),
+        unique=True,
+        nullable=False
+    )
+
+    password_hash: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False
+    )
+
+    is_admin: Mapped[bool] = mapped_column(
+        Boolean,
+        default=False
+    )
