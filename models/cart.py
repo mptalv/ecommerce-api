@@ -3,29 +3,12 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 
+from sqlalchemy.orm import Mapped, mapped_column
 
 class CartItem(Base):
     __tablename__ = "cart_items"
 
-    id = Column(Integer, primary_key=True)
-
-    user_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
-
-    product_id = Column(
-        Integer,
-        ForeignKey("products.id"),
-        nullable=False
-    )
-
-    quantity = Column(
-        Integer,
-        nullable=False,
-        default=1
-    )
-
-    user = relationship("User")
-    product = relationship("Product")
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int]
+    product_id: Mapped[int]
+    quantity: Mapped[int] = mapped_column(default=1)
